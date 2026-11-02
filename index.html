@@ -109,7 +109,7 @@ aside nav a.on{background:var(--pl);color:var(--lt);box-shadow:none}aside nav a:
 .sk{max-width:none;margin:0;background:var(--pn2);border:1px solid var(--bd);border-radius:18px;padding:16px 18px}
 .kp{background:var(--pn2);color:var(--tx);border:1px solid var(--bd)}.kr{background:var(--pn);border:1px solid var(--bd)}.kr i{background:var(--pl);color:var(--lt)}
 @media(max-width:860px){.sec:not(#s-beranda){padding:22px 18px;border-radius:22px}#s-keahlian{grid-template-columns:1fr}.st .card{padding:8px 16px}.st .card:nth-child(3){border-left:0}.st .card:nth-child(n+3){border-top:1px solid var(--bd);margin-top:8px;padding-top:16px}}
-.logo .lg{display:block;max-width:100%;max-height:88px;object-fit:contain}.logo{padding-bottom:18px}.ft .flg{display:block;height:44px;max-width:180px;object-fit:contain}
+.logo .lg{display:block;max-width:100%;max-height:68px;object-fit:contain}.logo{padding-bottom:18px}.ft .flg{display:block;height:44px;max-width:180px;object-fit:contain}
 .mh{display:none}.mlg{display:block;max-height:44px;max-width:70%;object-fit:contain}.mt{font:800 24px 'Plus Jakarta Sans',sans-serif}.mt i{color:var(--lt);font-style:normal}
 @media(max-width:860px){.mh{display:flex;align-items:center;height:48px;margin-bottom:12px}}
 </style></head><body><div id="app"></div>
@@ -171,7 +171,7 @@ testimoni:['Testimoni','nama',[['nama','Nama'],['peran','Peran'],['isi','Isi','t
 materi:['Materi','judul',[['judul','Judul'],['deskripsi','Deskripsi','t'],['tautan','Tautan'],['untukPeran','Untuk','s',['semua','siswa','klien']]]],
 akun:['Pengguna','nama',[['username','Username'],['nama','Nama'],['peran','Peran','s',['siswa','klien']],['password','Password (isi untuk mengubah)','p'],['aktif','Aktif','b']]],
 pesan:['Pesan','nama',[['nama','Nama'],['kontak','Kontak'],['isi','Isi','t'],['dibaca','Sudah dibaca','b']]]};
-const PF=[['nama','Nama'],['gelar','Gelar'],['tagline','Tagline'],['deskripsi','Deskripsi','t'],['fotoUrl','Link Foto (Google Drive / URL gambar)'],['logoUrl','Link Logo (Google Drive / URL gambar) — kosongkan untuk memakai teks Bams.id'],['noWhatsApp','No. WhatsApp (628...)'],['instagram','URL Instagram'],['linkedin','URL LinkedIn'],['email','Email'],['lokasi','Lokasi'],['tahunMengajar','Tahun Mengajar','n'],['siswaDibimbing','Siswa Dibimbing','n']];
+const PF=[['nama','Nama'],['gelar','Gelar'],['tagline','Tagline'],['deskripsi','Deskripsi','t'],['fotoUrl','Link Foto (Google Drive / URL gambar)'],['logoUrl','Link Logo (Google Drive / URL gambar) — kosongkan untuk memakai teks Bams.id'],['faviconUrl','Link Favicon / ikon tab browser (Google Drive / URL gambar) — kosongkan untuk memakai Link Logo'],['noWhatsApp','No. WhatsApp (628...)'],['instagram','URL Instagram'],['linkedin','URL LinkedIn'],['email','Email'],['lokasi','Lokasi'],['tahunMengajar','Tahun Mengajar','n'],['siswaDibimbing','Siswa Dibimbing','n']];
 let S={v:'beranda',vw:null,d:{},p:{},a:{},cat:'Semua',tab:'profil',m:null,more:0};
 const toast=t=>{const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.append(d);setTimeout(()=>d.remove(),Math.max(2600,t.length*70))};
 const g=c=>[...(S.d[c]||[])].sort((a,b)=>(a.urutan??99)-(b.urutan??99)||String(b.dibuatPada||'').localeCompare(String(a.dibuatPada||'')));
@@ -213,7 +213,7 @@ const FT=()=>`<footer class="ft"><div class="fl">${S.p.logoUrl?`<img class="flg"
 const main=()=>L.includes(S.v)?ER()+L.map(k=>`<section class="sec" id="s-${k}">${V[k]()}</section>`).join(''):'<a class="lk" data-go="beranda" style="margin-bottom:16px">← Kembali ke Beranda</a>'+V[S.v]();
 const MH=()=>`<div class="mh">${S.p.logoUrl?`<img class="mlg" src="${im(S.p.logoUrl)}" alt="Bams.id" referrerpolicy="no-referrer" data-fb="Bams.id">`:'<span class="mt">BAMS<i>.id</i></span>'}</div>`;
 const FV=document.querySelector('link[rel=icon]'),FV0=FV?[FV.getAttribute('href'),FV.getAttribute('type')]:0;
-const fav=()=>{if(!FV)return;const x=S.p.logoUrl?im(S.p.logoUrl).replace(/&amp;/g,'&'):'';if(x&&x!='#'){FV.removeAttribute('type');FV.setAttribute('href',x)}else{FV.setAttribute('href',FV0[0]);if(FV0[1])FV.setAttribute('type',FV0[1])}};
+const fav=()=>{if(!FV)return;const fs=S.p.faviconUrl||S.p.logoUrl,x=fs?im(fs).replace(/&amp;/g,'&'):'';if(x&&x!='#'){FV.removeAttribute('type');FV.setAttribute('href',x)}else{FV.setAttribute('href',FV0[0]);if(FV0[1])FV.setAttribute('type',FV0[1])}};
 let RV;const rvInit=()=>{RV?.disconnect();if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const a=$('#app'),h=a.clientHeight;
 RV=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;RV.unobserve(t);t.classList.add('in');setTimeout(()=>t.classList.remove('rv','in'),1700)}),{root:a,threshold:.08,rootMargin:'0px 0px -5% 0px'});
 document.querySelectorAll('.sec:not(#s-beranda),.ft').forEach(sec=>{const l=sec.matches('.ft')?[sec]:[...sec.querySelectorAll(':scope>*,.tl>*,.grid>*,.kt>*')].filter(e=>!e.matches('.grid,.tl,.kt'));
